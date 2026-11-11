@@ -27,7 +27,6 @@
       --sage: #759F87;
       --sage-light: #EBF3EE;
       --warm-peach: #F6BD60;
-      --lavender-soft: #ECE8F4;
       
       --shadow-sm: 0 2px 8px rgba(92, 64, 45, 0.05);
       --shadow-md: 0 8px 24px rgba(92, 64, 45, 0.08);
@@ -571,7 +570,7 @@
     <header class="header">
       <div class="header-badge">⭐ AFFILIATE INTELLIGENCE HUB</div>
       <h1 class="header-title">Riset Produk Harian</h1>
-      <p class="header-subtitle">Optimasi konten 25 video harian berbasis data aktual penjualan.</p>
+      <p class="header-subtitle">Optimasi konten 25 video harian berbasis data tipe & model produk terlaris.</p>
     </header>
 
     <div class="grid-layout">
@@ -614,7 +613,7 @@
 
         <!-- PRODUCT LIST CONTAINER -->
         <div class="section-title">
-          <span>📦</span> Daftar 5 Produk Yang Harus Dicari
+          <span>📦</span> Daftar 5 Jenis Produk Yang Harus Dicari
         </div>
 
         <div id="productList" class="product-list"></div>
@@ -641,330 +640,330 @@
   <div id="toast" class="toast">Kata kunci disalin!</div>
 
   <script>
-    // --- DATABASE RISET & PENJUALAN AKTUAL ---
+    // --- DATABASE RISET BERDASARKAN JENIS & TIPE PRODUK (GENERIC / NO BRAND) ---
     const SCHEDULE_DATA = {
       1: { // SENIN
-        name: "Senin — Celana Wanita & Tumbler (Core Winning)",
-        focus: "Highwaist Jeans, Cutbray Scuba, & Stainless Tumbler",
+        name: "Senin — Celana Wanita & Botol Minum (Pilar Utama)",
+        focus: "Highwaist Jeans, Cutbray Scuba, & Botol Minum Stainless",
         target: "5 Produk • 25 Video",
         items: [
           {
-            title: "Celana Cutbray / Flare Scuba Melar",
+            title: "Celana Cutbray / Flare Scuba Melar Highwaist",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "celana cutbray scuba highwaist wanita",
-            criteria: "Cek listing komisi Iklan Toko 10-13% (contoh: RAVEENA/Rolux). Bahan tebal melar, pinggang elastis, harga Rp45.000 - Rp65.000."
+            criteria: "Cek listing komisi Iklan Toko 10-13%. Bahan scuba tebal melar elastis, pinggang karet nyaman, harga Rp45.000 - Rp65.000."
           },
           {
-            title: "Baggy / Barrel Highwaist Jeans Denim",
+            title: "Celana Baggy / Wide Leg Jeans Denim Pinggang Tinggi",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "baggy jeans highwaist wanita wide leg",
-            criteria: "Target GMV Rp100.000 - Rp129.000 (contoh: JOSO Baggy). Komisi 10% (~Rp10.000-Rp12.000/order). Denim jatuh tidak kaku."
+            criteria: "Target GMV Rp100.000 - Rp129.000. Komisi 10% (~Rp10.000-Rp12.000/order). Bahan denim jatuh tidak kaku."
           },
           {
-            title: "Pleated Trousers / Kulot Semiwool Formal",
+            title: "Celana Kulot Pleated / Loose Pants Semiwool Formal",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "celana kulot pleated wanita kerja loose",
-            criteria: "Model lipit rapi (contoh: Auzura Winter Pleats / FRATA). Komisi toko 7-10%, harga Rp70.000 - Rp85.000."
+            criteria: "Model lipit rapi atau bahan semiwool jatuh untuk kerja/kuliah. Komisi toko 7-10%, harga Rp70.000 - Rp85.000."
           },
           {
-            title: "Tumbler Stainless Steel 304 (500ml)",
+            title: "Botol Minum / Tumbler Stainless Steel 304 (500ml)",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "tumbler stainless steel 304 tahan dingin 24 jam",
-            criteria: "Wajib SUS 304 (contoh: ETERNITE Botella). Komisi stabil 10% (~Rp8.000/order). Desain minimalis earth-tone."
+            criteria: "Wajib bahan stainless SUS 304 food grade. Komisi stabil 10% (~Rp8.000/order). Desain minimalis warna pastel/earth tone."
           },
           {
-            title: "Tumbler Aesthetic Gagang Portable (890ml)",
+            title: "Botol Minum / Tumbler Gagang Portable Sedotan (890ml)",
             status: "Potensial",
             badgeClass: "badge-potensial",
             keyword: "tumbler aesthetic stainless 890ml handle portable",
-            criteria: "Cek komisi volume pesanan 9-10% (contoh: Cuculemon). Pastikan sedotan BPA Free & anti bocor."
+            criteria: "Cek komisi 9-10%. Model berkapasitas besar dengan handle pegangan, sedotan BPA Free, dan tutup anti bocor."
           }
         ]
       },
       2: { // SELASA
-        name: "Selasa — Tas Casual & Kecantikan Harian",
-        focus: "Handbag Mini, Tote Kuliah, & Face Care Barrier",
+        name: "Selasa — Tas Casual & Perawatan Wajah Harian",
+        focus: "Tas Tangan Mini, Tas Jinjing Kuliah, & Pembersih Wajah",
         target: "5 Produk • 25 Video",
         items: [
           {
-            title: "Handbag Mini Kulit Sintetis 2-in-1",
+            title: "Tas Tangan Mini Kulit Sintetis (Bisa Selempang)",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "hand bag mini wanita kulit sintetis selempang",
-            criteria: "Harga sweet spot Rp60.000 - Rp70.000 (contoh: DENA Akaci). Ringan, jahitan rapi, muat HP & dompet."
+            criteria: "Harga sweet spot Rp60.000 - Rp70.000. Ringan, jahitan rapi, ada tali selempang, muat ponsel dan dompet."
           },
           {
-            title: "Shoulder Bag Vintage PU Leather",
+            title: "Tas Bahu / Shoulder Bag PU Leather Vintage",
             status: "Potensial",
             badgeClass: "badge-potensial",
             keyword: "shoulder bag wanita pu leather korean style",
-            criteria: "Pilihan model geometris / monogram (contoh: Lopobya / ZYHA). Komisi minimal 5%."
+            criteria: "Pilihan model motif geometris atau polos elegan untuk nongkrong/kerja. Komisi minimal 5%."
           },
           {
-            title: "Tote Bag Kanvas / Kuliah Muat Laptop",
+            title: "Tas Jinjing / Tote Bag Kanvas Muat Laptop",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "tote bag wanita resleting muat laptop",
-            criteria: "Harga Rp50.000 - Rp90.000 (contoh: Namikita Emira). Bahan kokoh, resleting lancar, bonus goodie bag jika ada."
+            criteria: "Harga Rp50.000 - Rp90.000. Bahan kanvas tebal atau kulit sintetis kokoh, penutup resleting lancar."
           },
           {
-            title: "Gentle Facial Cleanser Oat Extract",
+            title: "Pembersih Wajah / Facial Cleanser Ekstrak Gandum (Oat)",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "gentle cleanser oat extract kulit sensitif",
-            criteria: "Komisi 10% (contoh: Minimalist 6% Oat). Low pH, tanpa busa berlebih, aman untuk skin barrier."
+            criteria: "Komisi 10%. pH seimbang, tanpa busa berlebih, menjaga skin barrier dan tidak membuat kulit ketarik."
           },
           {
-            title: "Moisturizer Gel Centella / Sunscreen Ringan",
+            title: "Pelembap Wajah Gel Centella / Sunscreen Ringan",
             status: "Potensial",
             badgeClass: "badge-potensial",
             keyword: "moisturizer cica acne barrier ceramide gel",
-            criteria: "Kemasan travel friendly, BPOM resmi, tekstur watery gel cepat meresap (contoh: NPURE / EIEM)."
+            criteria: "Kemasan travel friendly, nomor BPOM jelas, tekstur gel dingin cepat meresap untuk kulit rentan berjerawat."
           }
         ]
       },
       3: { // RABU
-        name: "Rabu — Fashion Tops & Lifestyle",
-        focus: "Kemeja Flanel/Rayon, Blouse Jumbo, & EDP Tahan Lama",
+        name: "Rabu — Atasan Kasual & Wewangian Harian",
+        focus: "Kemeja Santai, Blus Bordir Jumbo, & Minyak Wangi",
         target: "5 Produk • 25 Video",
         items: [
           {
-            title: "Kemeja Flanel / Rayon Kasual V-Neck",
+            title: "Kemeja Kasual Kerah V-Neck Bahan Katun Rayon",
             status: "Potensial",
             badgeClass: "badge-potensial",
             keyword: "kemeja flanel wanita oversize katun adem",
-            criteria: "Komisi Iklan Toko 10-12%. Katun tidak tipis terawang, potongan relaxed loose fit."
+            criteria: "Komisi Iklan Toko 10-12%. Katun tidak tipis menerawang, potongan relaxed loose fit kasual."
           },
           {
-            title: "Blouse Katun Bordir Bigsize / Jumbo",
+            title: "Blus Katun Bordir Bunga Ukuran Besar (Jumbo)",
             status: "Potensial",
             badgeClass: "badge-potensial",
             keyword: "blouse wanita oversize ld 120 katun bordir",
-            criteria: "Target LD 110-140cm (contoh: Louise Katun Miracle). Sweet spot harga Rp65.000."
+            criteria: "Target lingkar dada 110-140cm. Harga ekonomis di kisaran Rp60.000 - Rp70.000."
           },
           {
-            title: "Extrait De Parfum Aroma Fresh/Woody",
+            title: "Minyak Wangi Extrait De Parfum Pria (Aroma Segar & Kayu)",
             status: "Winning",
             badgeClass: "badge-winning",
-            keyword: "aerostreet parfum extrait de parfum fresh fruity",
-            criteria: "Komisi tinggi 11% (contoh: Aerostreet PF series). Ketahanan minimal 6-8 jam tertera di listing."
+            keyword: "extrait de parfum pria tahan lama fresh woody",
+            criteria: "Komisi tinggi ~11%. Konsentrasi wangi tahan 6-8 jam, wangi segar citrus berpadu kayu hangat."
           },
           {
-            title: "Daily EDP Aroma Manis / Baby Scent",
+            title: "Minyak Wangi Harian Wanita (Aroma Manis / Bedak Bayi)",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "parfum wangi bayi tahan lama edp unisex",
-            criteria: "Harga hemat Rp25.000 - Rp45.000 (contoh: Braven / ByeByeBaby). Cocok buat audiens pelajar/mahasiswa."
+            criteria: "Harga terjangkau Rp25.000 - Rp45.000. Aroma soft calming lembut, cocok untuk pelajar dan mahasiswa."
           },
           {
-            title: "Sandal Selop EVA Empuk Anti Slip",
+            title: "Sandal Selop Busa EVA Empuk Anti Selip",
             status: "Explore",
             badgeClass: "badge-explore",
             keyword: "sandal selop eva wanita empuk anti slip",
-            criteria: "Bahan busa EVA tebal empuk (cloud slides), model korean minimalis, harga di bawah Rp40.000."
+            criteria: "Material busa EVA empuk tebal, anti licin di lantai basah, harga di bawah Rp40.000."
           }
         ]
       },
       4: { // KAMIS
-        name: "Kamis — Innerwear & Perawatan Diri",
-        focus: "Bra Seamless Tanpa Kawat, Body Spray, & Sabun Jerawat",
+        name: "Kamis — Pakaian Dalam & Perawatan Tubuh",
+        focus: "Bra Seamless Tanpa Kawat, Semprotan Ketiak, & Sabun Mandi",
         target: "5 Produk • 25 Video",
         items: [
           {
-            title: "Bra Seamless Sport Tanpa Kawat (Bundel 2pcs)",
+            title: "Bra Seamless Model Rompi Tanpa Kawat (Paket 2 Pcs)",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "bra seamless tanpa kawat 2pcs sport wanita busa",
-            criteria: "Cari brand dengan komisi >5% (contoh: GRENEY / EDRAME untuk opsi margin lebih sehat dibanding MyBra 2%)."
+            criteria: "Cari toko yang menyediakan komisi 5-10% untuk opsi margin lebih sehat dibanding listing komisi 2%."
           },
           {
-            title: "Bra Seamless Cup Jumbo B/C/D",
+            title: "Bra Seamless Elastis Ukuran Jumbo Cup B/C/D",
             status: "Potensial",
             badgeClass: "badge-potensial",
             keyword: "bra tanpa kawat cup besar jumbo sport elastis",
-            criteria: "Kain breathable, sayap bra lebar menyamarkan lemak punggung, cup fleksibel."
+            criteria: "Kain sejuk menyerap keringat, sayap bra lebar merapikan lemak punggung, cup elastis tanpa tekanan."
           },
           {
-            title: "Body Odorizer / Deodorant Spray Pemutih",
+            title: "Semprotan Penghilang Bau Badan / Body Odorizer Spray",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "body odorizer spray antiperspirant mencerahkan ketiak",
-            criteria: "Formula bebas noda kuning baju (contoh: Deorex Peach). Klaim proteksi keringat hingga 72 jam."
+            criteria: "Bebas alkohol yang meninggalkan noda kuning di pakaian. Proteksi keringat berlebih 48-72 jam."
           },
           {
-            title: "Sabun Mandi Khusus Jerawat Punggung & Gatal",
+            title: "Sabun Mandi Perawatan Jerawat Punggung & Kulit Gatal",
             status: "Potensial",
             badgeClass: "badge-potensial",
             keyword: "sabun mandi jerawat punggung salicylic acid sulfur",
-            criteria: "Bentuk cair pump atau batangan herbal. Membantu fungal acne dan kulit sensitif (contoh: Leeva)."
+            criteria: "Format cair botol pump atau batangan herbal. Membantu membersihkan pori tubuh dan mengeringkan jerawat."
           },
           {
-            title: "Body Lotion Wangi Mewah Botol Pump 500ml",
+            title: "Losion Tubuh Melembapkan Botol Pump 500ml",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "body lotion wangi tahan lama 500ml aloe vera niacinamide",
-            criteria: "Aroma mewah (contoh: KUNDAL Macadamia). Tekstur lembap tidak lengket, komisi toko ~8%."
+            criteria: "Aroma wangi elegan tahan lama, kandungan niacinamide mencerahkan, komisi toko ~8%."
           }
         ]
       },
       5: { // JUMAT
-        name: "Jumat — Scaling Winning & Komisi Tinggi",
-        focus: "Skalakan JOSO Jeans, Raveena 13%, & Eternite Tumbler",
+        name: "Jumat — Skalakan Model Terlaris & Komisi Tinggi",
+        focus: "Skalakan Jeans Pinggang Tinggi, Cutbray Melar, & Botol Minum",
         target: "5 Produk • 25 Video",
         items: [
           {
-            title: "Winning Scale: Baggy Jeans Highwaist Casual",
+            title: "Skala Penjualan: Celana Jeans Baggy Highwaist",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "baggy jeans wanita highwaist kulot kekinian",
-            criteria: "Keluarkan variasi hook baru: 'Jeans buat paha besar auto jenjang'. Cek listing Iklan Toko 10%."
+            criteria: "Fokus hook visual: 'Celana untuk paha berisi terlihat jenjang'. Utamakan listing Iklan Toko 10%."
           },
           {
-            title: "Winning Scale: Cutbray Scuba Highwaist 13%",
+            title: "Skala Penjualan: Celana Cutbray Scuba Komisi 10-13%",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "celana cutbray wanita flare pants scuba melar",
-            criteria: "Cari supplier dengan komisi 13% Iklan Toko. Fokus konten elastisitas dan efek slimming."
+            criteria: "Pilih toko dengan persentase komisi 13%. Tonjolkan elastisitas karet dan efek kaki ramping."
           },
           {
-            title: "Winning Scale: Tumbler Stainless 304 Tahan 24 Jam",
+            title: "Skala Penjualan: Botol Minum Tahan Dingin 24 Jam",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "botol minum stainless steel insulated vacuum tahan dingin",
-            criteria: "Uji es batu 24 jam tidak berembun. Target profit bersih Rp8.500 per unit terjual."
+            criteria: "Konten uji es batu seharian tanpa embun di bodi luar botol. Target komisi bersih ~Rp8.000+ per order."
           },
           {
-            title: "Alternatif High-Margin: Seamless Bra Rompi 8-10%",
+            title: "Peluang Margin Tinggi: Bra Seamless Tanpa Kawat Komisi 8-10%",
             status: "Potensial",
             badgeClass: "badge-potensial",
             keyword: "seamless bra rompi wanita tanpa kawat adem",
-            criteria: "Uji listing baru yang berani kasih komisi 8-10% untuk menukar traffic bra yang sebelumnya cuma 2%."
+            criteria: "Uji listing alternatif yang memberikan komisi lebih tinggi untuk memaksimalkan traffic konversi bra."
           },
           {
-            title: "Winning Skincare: Gentle Face Wash Sabun Cuci Muka",
+            title: "Skala Skincare: Sabun Muka Lembut Untuk Kulit Kering",
             status: "Winning",
             badgeClass: "badge-winning",
             keyword: "face wash oat extract kulit sensitif dry skin",
-            criteria: "Tunjukkan tekstur gel dan busa lembut. Target komisi 10% (~Rp6.000 - Rp8.000/order)."
+            criteria: "Tunjukkan tekstur gel dan busa yang lembut. Komisi target 10% (~Rp6.000 - Rp8.000 per order)."
           }
         ]
       },
       6: { // SABTU
-        name: "Sabtu — Eksplorasi & Uji Kategori Baru",
-        focus: "Barrel Jeans Petite, Ransel Laptop, & Travel Storage",
+        name: "Sabtu — Eksplorasi Model Baru & Kebutuhan Bepergian",
+        focus: "Jeans Potongan Lengkung, Ransel Sekolah, & Tas Koper",
         target: "5 Produk • 25 Video",
         items: [
           {
-            title: "Barrel Jeans Petite / Celana Lengkung Trend",
+            title: "Celana Jeans Potongan Melengkung (Barrel Jeans Petite)",
             status: "Explore",
             badgeClass: "badge-explore",
             keyword: "barrel pants wanita jeans petite oversize",
-            criteria: "Trend bawahan baru (contoh: LF Liora Barrel). Potongan unik cocok buat TB 150-160cm."
+            criteria: "Model siluet kaki melengkung unik kekinian, pas untuk tinggi badan 150-160cm."
           },
           {
-            title: "Tas Ransel Nilon Korea Anti Air (Laptop 14\")",
+            title: "Tas Ransel Punggung Nilon Anti Air Muat Laptop",
             status: "Explore",
             badgeClass: "badge-explore",
             keyword: "tas ransel wanita korea nilon waterproof kuliah laptop",
-            criteria: "Target anak sekolah & mahasiswi (contoh: Chiyum). Banyak kantong multifungsi, bahan tahan air."
+            criteria: "Target siswi & mahasiswi. Banyak saku kompartemen, bahan kain nilon ringan tahan air gerimis."
           },
           {
-            title: "Coffee Tumbler Mug Handle Stainless",
+            title: "Cangkir Kopi Termal Stainless Steel Portabel",
             status: "Explore",
             badgeClass: "badge-explore",
             keyword: "gelas kopi tumbler stainless handle sedotan portable",
-            criteria: "Model coffee cup estetik cocok untuk meja kantor / mobil. Uji komisi di atas 8%."
+            criteria: "Model cangkir kopi estetik tahan panas/dingin untuk meja kerja atau dalam kendaraan. Komisi >8%."
           },
           {
-            title: "Serum Pencerah Bekas Jerawat & Flek",
+            title: "Serum Pencerah Wajah & Pemudar Noda Hitam",
             status: "Explore",
             badgeClass: "badge-explore",
             keyword: "serum niacinamide alpha arbutin pencerah bekas jerawat",
-            criteria: "Review jujur ingredients BPOM. Cek listing resmi toko mall / verified."
+            criteria: "Cek bahan aktif pencerah terdaftar BPOM resmi. Prioritaskan toko dengan penjualan ribuan botol."
           },
           {
-            title: "8-in-1 Travel Bag Organizer Set Koper",
+            title: "Set Kantong Penyimpan Pakaian Koper (Travel Organizer)",
             status: "Explore",
             badgeClass: "badge-explore",
             keyword: "8 in 1 travel organizer bag set koper pouch pakaian",
-            criteria: "Kategori lifestyle musiman/travel. GMV Rp100.000+, komisi Iklan Toko 8-10%."
+            criteria: "Paket isi 6 hingga 8 pouch koper untuk bepergian. Target pesanan komisi Iklan Toko 8-10%."
           }
         ]
       },
       0: { // MINGGU
-        name: "Minggu — Evaluasi Mingguan & Filter Data",
-        focus: "Audit Komisi Bersih, Status Batal, & Sortir Video Juara",
+        name: "Minggu — Evaluasi Mingguan & Filter Data Listing",
+        focus: "Audit Komisi Bersih, Status Batal, & Sortir Video Terbaik",
         target: "0 Produk Baru • Audit Mode",
         items: [
           {
-            title: "Audit Status: Sudah Dibayar vs Dibatalkan",
+            title: "Audit Status Transaksi: Dibayar vs Dibatalkan",
             status: "Winning",
             badgeClass: "badge-winning",
-            keyword: "laporan pesanan affiliate tiktok shop",
-            criteria: "Sortir produk yang sering 'Tidak Memenuhi Syarat' berturut-turut untuk dipause dari promosi."
+            keyword: "laporan pesanan affiliate marketplace",
+            criteria: "Sortir listing produk yang sering berstatus 'Tidak Memenuhi Syarat' untuk dihentikan promosinya."
           },
           {
-            title: "Analisis Selisih Komisi: Iklan Toko vs Standar",
+            title: "Analisis Selisih Komisi: Iklan Toko vs Komisi Standar",
             status: "Winning",
             badgeClass: "badge-winning",
-            keyword: "komisi iklan toko tiktok",
-            criteria: "Pastikan video dipasang keranjang pada toko bertanda komisi Iklan Toko (10-13%) bukan komisi standar (2%)."
+            keyword: "komisi iklan toko affiliate",
+            criteria: "Pastikan tautan keranjang produk mengarah ke listing dengan komisi Iklan Toko (10-13%) bukan komisi biasa (2%)."
           },
           {
-            title: "Evaluasi Konversi Bra & Innerwear",
+            title: "Evaluasi Konversi Pakaian Dalam & Bra",
             status: "Potensial",
             badgeClass: "badge-potensial",
             keyword: "supplier bra seamless komisi tinggi",
-            criteria: "Cari supplier pengganti MyBra yang memberi komisi lebih layak namun kualitas barang tetap lembut."
+            criteria: "Temukan toko pengganti yang menawarkan komisi lebih sepadan namun kualitas busa dan kain tetap lembut."
           },
           {
-            title: "Sortir 3 Top Video dengan GMV Tertinggi",
+            title: "Sortir 3 Konsep Video dengan Omzet Tertinggi",
             status: "Winning",
             badgeClass: "badge-winning",
-            keyword: "analisis video affiliate tiktok analytics",
-            criteria: "Tonton ulang hook 3 detik pertama pada video celana Joso & Raveena. Duplikasi teknik opening-nya."
+            keyword: "analisis video konversi penjualan",
+            criteria: "Tonton ulang 3 detik pembuka video celana panjang yang menghasilkan repeat order paling banyak minggu ini."
           },
           {
-            title: "Pembersihan Keranjang Kuning yang Stok Habis",
+            title: "Pemeriksaan Ketersediaan Stok Varian Warna Favorit",
             status: "Explore",
             badgeClass: "badge-explore",
-            keyword: "cek stok varian listing toko affiliate",
-            criteria: "Ganti link produk yang varian warna hitam/ukuran favoritnya habis agar pembeli tidak drop."
+            keyword: "cek stok variasi ukuran produk",
+            criteria: "Ganti tautan listing jika ukuran standar (M/L) atau warna hitam habis agar calon pembeli tidak membatalkan checkout."
           }
         ]
       }
     };
 
-    // 5 FORMULA VIDEO SCRIPTS
+    // 5 FORMULA VIDEO SCRIPTS (GENERIC & ACTIONABLE)
     const VIDEO_CONCEPTS = [
       {
         tag: "Konsep 1: Visual Shock / Problem Hook",
         title: "Keresahan Sehari-hari yang Terpecahkan",
-        desc: "3 detik awal sorot masalah paling menyebalkan (misal: 'Pernah gak sih beli celana tapi paha keliatan lebar?' atau 'Air es baru 2 jam udah hangat?'). Lalu tunjukkan produk ini sebagai solusinya."
+        desc: "3 detik awal sorot masalah paling umum (misal: 'Pernah beli celana tapi bikin paha kelihatan lebar?' atau 'Air es baru ditinggal sebentar sudah mencair?'). Langsung tunjukkan produk ini sebagai solusinya."
       },
       {
         tag: "Konsep 2: Try-On 360° / Product Showcase",
         title: "Tampilan Asli Tanpa Filter (Real Lighting)",
-        desc: "Perlihatkan produk dari berbagai sudut di bawah cahaya matahari. Gerakkan kain, raba tekstur bahan, perlihatkan kerapian resleting dan jahitan agar calon pembeli percaya kualitasnya."
+        desc: "Perlihatkan produk dari berbagai sudut di bawah cahaya alami. Gerakkan bahan kain, perlihatkan kerapian resleting dan jahitan agar penonton yakin dengan kualitas fisiknya."
       },
       {
-        tag: "Konsep 3: Uji Fitur & Bukti Listing",
-        title: "Tes Pembuktian Janji Toko",
-        desc: "Buktikan satu per satu spesifikasi produk secara ekstrem (misal: celana ditarik untuk tes stretch karet, botol dibalik anti bocor, es batu didiamkan semalaman)."
+        tag: "Konsep 3: Uji Fitur & Pembuktian Spesifikasi",
+        title: "Tes Pembuktian Janji Deskripsi Toko",
+        desc: "Buktikan satu per satu spesifikasi produk secara langsung (misal: celana ditarik untuk tes kelenturan karet, botol dibalik anti tumpah, es batu dibiarkan berjam-jam)."
       },
       {
         tag: "Konsep 4: A Day in My Life / Mix & Match",
-        title: "Outfit Inspiration & Gaya Hidup",
-        desc: "Tunjukkan bagaimana produk dipakai saat aktivitas nyata: dipakai kerja kantor formal, nongkrong di cafe, atau tumbler yang pas masuk di cup holder mobil/ransel."
+        title: "Inspirasi Padu Padan & Penggunaan Nyata",
+        desc: "Tunjukkan bagaimana produk dipakai beraktivitas sehari-hari: dipadukan untuk ke kantor/kampus, atau botol minum yang pas di kompartemen tas saat mobilitas tinggi."
       },
       {
         tag: "Konsep 5: FOMO & Urgensi Keranjang Kuning",
-        title: "Spill Promo Bundel & Kupon Toko",
-        desc: "'Jangan checkout 1 pcs rugi, ambil paket bundel 2 pcs diskonnya lumayan banget!'. Arahkan tangan menunjuk ke arah keranjang kuning sebelum promo berakhir."
+        title: "Informasi Paket Bundel & Kupon Diskon Toko",
+        desc: "'Beli 1 nanggung, ambil paket promo isi 2 atau klaim voucher toko mumpung masih aktif'. Arahkan jari menunjuk ke arah keranjang kuning sebelum stok habis."
       }
     ];
 
@@ -1001,7 +1000,6 @@
 
     // INIT CALENDAR SELECTORS (MULTI-YEAR SYSTEM)
     function initSelectors() {
-      // Months
       monthSelect.innerHTML = "";
       MONTH_NAMES.forEach((name, idx) => {
         const opt = document.createElement('option');
@@ -1010,7 +1008,6 @@
         monthSelect.appendChild(opt);
       });
 
-      // Years (Multi-Year: Current Year - 2 to + 5 years)
       yearSelect.innerHTML = "";
       const baseYear = new Date().getFullYear();
       for (let y = baseYear - 2; y <= baseYear + 6; y++) {
@@ -1090,7 +1087,7 @@
 
     // RENDER PRODUCTS ACCORDING TO SELECTED DAY
     function renderDayView() {
-      const dayOfWeek = selectedDate.getDay(); // 0-6
+      const dayOfWeek = selectedDate.getDay();
       const schedule = SCHEDULE_DATA[dayOfWeek];
 
       const dayName = DAY_NAMES[dayOfWeek];
@@ -1127,7 +1124,7 @@
           </div>
 
           <button class="btn-ideas" data-title="${item.title}">
-            🎬 Buat 5 Konsep Video Untuk Produk Ini
+            🎬 Buat 5 Konsep Video Untuk Jenis Produk Ini
           </button>
         `;
 
