@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Affiliate Daily Hub — Cozy Calendar & Product Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-cozy: #FAF6F0;
+      --card-bg: #FFFFFF;
+      --card-subtle: #FDFBF8;
+      --border-warm: #EFE7DC;
+      --text-main: #332B25;
+      --text-muted: #7E7367;
+      
+      /* Cozy Warm Palette */
+      --primary: #E07A5F;
+      --primary-light: #FDEEE9;
+      --primary-hover: #CC654A;
+      --terracotta: #D96B43;
+      --honey: #E9B44C;
+      --honey-light: #FDF6E2;
+      --sage: #759F87;
+      --sage-light: #EBF3EE;
+      --warm-peach: #F6BD60;
+      --lavender-soft: #ECE8F4;
+      
+      --shadow-sm: 0 2px 8px rgba(92, 64, 45, 0.05);
+      --shadow-md: 0 8px 24px rgba(92, 64, 45, 0.08);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-cozy);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 50px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 480px; /* Mobile First View */
+      padding: 16px;
+    }
+
+    @media (min-width: 900px) {
+      .app-container {
+        max-width: 960px;
+        padding: 32px 20px;
+      }
+      .grid-layout {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #FDEEE9 0%, #FAF0E6 100%);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header::after {
+      content: "☕✨";
+      position: absolute;
+      right: 16px;
+      top: 14px;
+      font-size: 26px;
+      opacity: 0.8;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      border: 1px solid rgba(224, 122, 95, 0.2);
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .header-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* CALENDAR WIDGET */
+    .calendar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+    }
+
+    .cal-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .cal-select-group {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .custom-select {
+      background: var(--card-subtle);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .cal-nav-btn {
+      width: 34px;
+      height: 34px;
+      background: var(--card-subtle);
+      border: 1px solid var(--border-warm);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .cal-nav-btn:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cal-days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    .day-cell {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .day-cell:hover:not(.empty) {
+      background: var(--primary-light);
+    }
+
+    .day-cell.selected {
+      background: var(--primary) !important;
+      color: #FFFFFF !important;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(224, 122, 95, 0.35);
+    }
+
+    .day-cell.today:not(.selected) {
+      border: 1.5px solid var(--primary);
+      color: var(--primary);
+      background: #FFF;
+    }
+
+    .day-cell.empty {
+      cursor: default;
+      opacity: 0.2;
+    }
+
+    .day-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      margin-top: 2px;
+      background-color: var(--primary);
+    }
+
+    .day-cell.selected .day-dot {
+      background-color: #FFFFFF;
+    }
+
+    /* CURRENT DAY PANEL */
+    .day-header-banner {
+      background: var(--card-bg);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .day-title-wrap h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .day-title-wrap p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .target-pill {
+      background: var(--sage-light);
+      color: var(--sage);
+      border: 1px solid rgba(117, 159, 135, 0.3);
+      padding: 6px 12px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    /* PRODUCT CARDS (MOBILE COZY CARDS) */
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin: 18px 0 10px 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.15s, border-color 0.2s;
+    }
+
+    .product-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .prod-index {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .prod-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+      flex-grow: 1;
+    }
+
+    .badge-status {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    .badge-winning {
+      background: #FFE8D6;
+      color: #BC4749;
+    }
+    .badge-potensial {
+      background: var(--honey-light);
+      color: #9C6615;
+    }
+    .badge-explore {
+      background: var(--sage-light);
+      color: var(--sage);
+    }
+
+    /* KEYWORD BOX */
+    .keyword-box {
+      background: var(--card-subtle);
+      border: 1px dashed var(--border-warm);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .keyword-text {
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--terracotta);
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .btn-copy {
+      background: #FFFFFF;
+      border: 1px solid var(--border-warm);
+      color: var(--text-main);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .btn-copy:active {
+      transform: scale(0.95);
+      background: var(--primary-light);
+    }
+
+    .criteria-box {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      background: #FAF7F2;
+      padding: 8px 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .criteria-box strong {
+      color: var(--text-main);
+    }
+
+    .btn-ideas {
+      width: 100%;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid rgba(224, 122, 95, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-ideas:hover {
+      background: var(--primary);
+      color: #FFF;
+    }
+
+    /* MODAL FOR 5 VIDEO IDEAS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(51, 43, 37, 0.5);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-sheet {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 520px;
+      border-radius: 24px 24px 0 0;
+      padding: 24px 20px 32px 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: translateY(100%);
+      transition: transform 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
+    }
+
+    .modal-overlay.active .modal-sheet {
+      transform: translateY(0);
+    }
+
+    .sheet-handle {
+      width: 40px;
+      height: 4px;
+      background: var(--border-warm);
+      border-radius: 10px;
+      margin: 0 auto 16px auto;
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .modal-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .concept-item {
+      background: var(--card-subtle);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .concept-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .concept-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .concept-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .btn-close-modal {
+      width: 100%;
+      background: var(--text-main);
+      color: #FFF;
+      border: none;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    /* TOAST NOTIF */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-main);
+      color: #FFFFFF;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-badge">⭐ AFFILIATE INTELLIGENCE HUB</div>
+      <h1 class="header-title">Riset Produk Harian</h1>
+      <p class="header-subtitle">Optimasi konten 25 video harian berbasis data aktual penjualan.</p>
+    </header>
+
+    <div class="grid-layout">
+      
+      <!-- LEFT: CALENDAR (MULTI-YEAR SELECTOR) -->
+      <aside>
+        <div class="calendar-card">
+          <div class="cal-controls">
+            <div class="cal-select-group">
+              <select id="monthSelect" class="custom-select" aria-label="Pilih Bulan"></select>
+              <select id="yearSelect" class="custom-select" aria-label="Pilih Tahun"></select>
+            </div>
+            <div style="display: flex; gap: 4px;">
+              <button id="prevMonth" class="cal-nav-btn" title="Bulan Sebelumnya">‹</button>
+              <button id="nextMonth" class="cal-nav-btn" title="Bulan Selanjutnya">›</button>
+            </div>
+          </div>
+
+          <div class="cal-weekdays">
+            <span>Min</span><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span>
+          </div>
+
+          <div id="calendarDays" class="cal-days-grid"></div>
+        </div>
+      </aside>
+
+      <!-- RIGHT: DAILY PRODUCTS & ACTIONS -->
+      <main>
+        
+        <!-- DAY BANNER -->
+        <div class="day-header-banner">
+          <div class="day-title-wrap">
+            <h2 id="activeDateStr">Memuat Jadwal...</h2>
+            <p id="activeDayFocus">Fokus Kategori Hari Ini</p>
+          </div>
+          <div class="target-pill" id="targetBadge">
+            5 Produk<br><span style="font-size: 10px; font-weight: normal;">25 Konsep Video</span>
+          </div>
+        </div>
+
+        <!-- PRODUCT LIST CONTAINER -->
+        <div class="section-title">
+          <span>📦</span> Daftar 5 Produk Yang Harus Dicari
+        </div>
+
+        <div id="productList" class="product-list"></div>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM SHEET MODAL (5 KONSEP VIDEO) -->
+  <div id="videoModal" class="modal-overlay">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <h3 class="modal-title" id="modalProductTitle">5 Formula Konsep Video</h3>
+      <p class="modal-subtitle">Gunakan skrip terstruktur ini untuk mencapai target 5 video per produk.</p>
+      
+      <div id="conceptList"></div>
+
+      <button id="closeModal" class="btn-close-modal">Selesai & Tutup</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast">Kata kunci disalin!</div>
+
+  <script>
+    // --- DATABASE RISET & PENJUALAN AKTUAL ---
+    const SCHEDULE_DATA = {
+      1: { // SENIN
+        name: "Senin — Celana Wanita & Tumbler (Core Winning)",
+        focus: "Highwaist Jeans, Cutbray Scuba, & Stainless Tumbler",
+        target: "5 Produk • 25 Video",
+        items: [
+          {
+            title: "Celana Cutbray / Flare Scuba Melar",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "celana cutbray scuba highwaist wanita",
+            criteria: "Cek listing komisi Iklan Toko 10-13% (contoh: RAVEENA/Rolux). Bahan tebal melar, pinggang elastis, harga Rp45.000 - Rp65.000."
+          },
+          {
+            title: "Baggy / Barrel Highwaist Jeans Denim",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "baggy jeans highwaist wanita wide leg",
+            criteria: "Target GMV Rp100.000 - Rp129.000 (contoh: JOSO Baggy). Komisi 10% (~Rp10.000-Rp12.000/order). Denim jatuh tidak kaku."
+          },
+          {
+            title: "Pleated Trousers / Kulot Semiwool Formal",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "celana kulot pleated wanita kerja loose",
+            criteria: "Model lipit rapi (contoh: Auzura Winter Pleats / FRATA). Komisi toko 7-10%, harga Rp70.000 - Rp85.000."
+          },
+          {
+            title: "Tumbler Stainless Steel 304 (500ml)",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "tumbler stainless steel 304 tahan dingin 24 jam",
+            criteria: "Wajib SUS 304 (contoh: ETERNITE Botella). Komisi stabil 10% (~Rp8.000/order). Desain minimalis earth-tone."
+          },
+          {
+            title: "Tumbler Aesthetic Gagang Portable (890ml)",
+            status: "Potensial",
+            badgeClass: "badge-potensial",
+            keyword: "tumbler aesthetic stainless 890ml handle portable",
+            criteria: "Cek komisi volume pesanan 9-10% (contoh: Cuculemon). Pastikan sedotan BPA Free & anti bocor."
+          }
+        ]
+      },
+      2: { // SELASA
+        name: "Selasa — Tas Casual & Kecantikan Harian",
+        focus: "Handbag Mini, Tote Kuliah, & Face Care Barrier",
+        target: "5 Produk • 25 Video",
+        items: [
+          {
+            title: "Handbag Mini Kulit Sintetis 2-in-1",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "hand bag mini wanita kulit sintetis selempang",
+            criteria: "Harga sweet spot Rp60.000 - Rp70.000 (contoh: DENA Akaci). Ringan, jahitan rapi, muat HP & dompet."
+          },
+          {
+            title: "Shoulder Bag Vintage PU Leather",
+            status: "Potensial",
+            badgeClass: "badge-potensial",
+            keyword: "shoulder bag wanita pu leather korean style",
+            criteria: "Pilihan model geometris / monogram (contoh: Lopobya / ZYHA). Komisi minimal 5%."
+          },
+          {
+            title: "Tote Bag Kanvas / Kuliah Muat Laptop",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "tote bag wanita resleting muat laptop",
+            criteria: "Harga Rp50.000 - Rp90.000 (contoh: Namikita Emira). Bahan kokoh, resleting lancar, bonus goodie bag jika ada."
+          },
+          {
+            title: "Gentle Facial Cleanser Oat Extract",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "gentle cleanser oat extract kulit sensitif",
+            criteria: "Komisi 10% (contoh: Minimalist 6% Oat). Low pH, tanpa busa berlebih, aman untuk skin barrier."
+          },
+          {
+            title: "Moisturizer Gel Centella / Sunscreen Ringan",
+            status: "Potensial",
+            badgeClass: "badge-potensial",
+            keyword: "moisturizer cica acne barrier ceramide gel",
+            criteria: "Kemasan travel friendly, BPOM resmi, tekstur watery gel cepat meresap (contoh: NPURE / EIEM)."
+          }
+        ]
+      },
+      3: { // RABU
+        name: "Rabu — Fashion Tops & Lifestyle",
+        focus: "Kemeja Flanel/Rayon, Blouse Jumbo, & EDP Tahan Lama",
+        target: "5 Produk • 25 Video",
+        items: [
+          {
+            title: "Kemeja Flanel / Rayon Kasual V-Neck",
+            status: "Potensial",
+            badgeClass: "badge-potensial",
+            keyword: "kemeja flanel wanita oversize katun adem",
+            criteria: "Komisi Iklan Toko 10-12%. Katun tidak tipis terawang, potongan relaxed loose fit."
+          },
+          {
+            title: "Blouse Katun Bordir Bigsize / Jumbo",
+            status: "Potensial",
+            badgeClass: "badge-potensial",
+            keyword: "blouse wanita oversize ld 120 katun bordir",
+            criteria: "Target LD 110-140cm (contoh: Louise Katun Miracle). Sweet spot harga Rp65.000."
+          },
+          {
+            title: "Extrait De Parfum Aroma Fresh/Woody",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "aerostreet parfum extrait de parfum fresh fruity",
+            criteria: "Komisi tinggi 11% (contoh: Aerostreet PF series). Ketahanan minimal 6-8 jam tertera di listing."
+          },
+          {
+            title: "Daily EDP Aroma Manis / Baby Scent",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "parfum wangi bayi tahan lama edp unisex",
+            criteria: "Harga hemat Rp25.000 - Rp45.000 (contoh: Braven / ByeByeBaby). Cocok buat audiens pelajar/mahasiswa."
+          },
+          {
+            title: "Sandal Selop EVA Empuk Anti Slip",
+            status: "Explore",
+            badgeClass: "badge-explore",
+            keyword: "sandal selop eva wanita empuk anti slip",
+            criteria: "Bahan busa EVA tebal empuk (cloud slides), model korean minimalis, harga di bawah Rp40.000."
+          }
+        ]
+      },
+      4: { // KAMIS
+        name: "Kamis — Innerwear & Perawatan Diri",
+        focus: "Bra Seamless Tanpa Kawat, Body Spray, & Sabun Jerawat",
+        target: "5 Produk • 25 Video",
+        items: [
+          {
+            title: "Bra Seamless Sport Tanpa Kawat (Bundel 2pcs)",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "bra seamless tanpa kawat 2pcs sport wanita busa",
+            criteria: "Cari brand dengan komisi >5% (contoh: GRENEY / EDRAME untuk opsi margin lebih sehat dibanding MyBra 2%)."
+          },
+          {
+            title: "Bra Seamless Cup Jumbo B/C/D",
+            status: "Potensial",
+            badgeClass: "badge-potensial",
+            keyword: "bra tanpa kawat cup besar jumbo sport elastis",
+            criteria: "Kain breathable, sayap bra lebar menyamarkan lemak punggung, cup fleksibel."
+          },
+          {
+            title: "Body Odorizer / Deodorant Spray Pemutih",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "body odorizer spray antiperspirant mencerahkan ketiak",
+            criteria: "Formula bebas noda kuning baju (contoh: Deorex Peach). Klaim proteksi keringat hingga 72 jam."
+          },
+          {
+            title: "Sabun Mandi Khusus Jerawat Punggung & Gatal",
+            status: "Potensial",
+            badgeClass: "badge-potensial",
+            keyword: "sabun mandi jerawat punggung salicylic acid sulfur",
+            criteria: "Bentuk cair pump atau batangan herbal. Membantu fungal acne dan kulit sensitif (contoh: Leeva)."
+          },
+          {
+            title: "Body Lotion Wangi Mewah Botol Pump 500ml",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "body lotion wangi tahan lama 500ml aloe vera niacinamide",
+            criteria: "Aroma mewah (contoh: KUNDAL Macadamia). Tekstur lembap tidak lengket, komisi toko ~8%."
+          }
+        ]
+      },
+      5: { // JUMAT
+        name: "Jumat — Scaling Winning & Komisi Tinggi",
+        focus: "Skalakan JOSO Jeans, Raveena 13%, & Eternite Tumbler",
+        target: "5 Produk • 25 Video",
+        items: [
+          {
+            title: "Winning Scale: Baggy Jeans Highwaist Casual",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "baggy jeans wanita highwaist kulot kekinian",
+            criteria: "Keluarkan variasi hook baru: 'Jeans buat paha besar auto jenjang'. Cek listing Iklan Toko 10%."
+          },
+          {
+            title: "Winning Scale: Cutbray Scuba Highwaist 13%",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "celana cutbray wanita flare pants scuba melar",
+            criteria: "Cari supplier dengan komisi 13% Iklan Toko. Fokus konten elastisitas dan efek slimming."
+          },
+          {
+            title: "Winning Scale: Tumbler Stainless 304 Tahan 24 Jam",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "botol minum stainless steel insulated vacuum tahan dingin",
+            criteria: "Uji es batu 24 jam tidak berembun. Target profit bersih Rp8.500 per unit terjual."
+          },
+          {
+            title: "Alternatif High-Margin: Seamless Bra Rompi 8-10%",
+            status: "Potensial",
+            badgeClass: "badge-potensial",
+            keyword: "seamless bra rompi wanita tanpa kawat adem",
+            criteria: "Uji listing baru yang berani kasih komisi 8-10% untuk menukar traffic bra yang sebelumnya cuma 2%."
+          },
+          {
+            title: "Winning Skincare: Gentle Face Wash Sabun Cuci Muka",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "face wash oat extract kulit sensitif dry skin",
+            criteria: "Tunjukkan tekstur gel dan busa lembut. Target komisi 10% (~Rp6.000 - Rp8.000/order)."
+          }
+        ]
+      },
+      6: { // SABTU
+        name: "Sabtu — Eksplorasi & Uji Kategori Baru",
+        focus: "Barrel Jeans Petite, Ransel Laptop, & Travel Storage",
+        target: "5 Produk • 25 Video",
+        items: [
+          {
+            title: "Barrel Jeans Petite / Celana Lengkung Trend",
+            status: "Explore",
+            badgeClass: "badge-explore",
+            keyword: "barrel pants wanita jeans petite oversize",
+            criteria: "Trend bawahan baru (contoh: LF Liora Barrel). Potongan unik cocok buat TB 150-160cm."
+          },
+          {
+            title: "Tas Ransel Nilon Korea Anti Air (Laptop 14\")",
+            status: "Explore",
+            badgeClass: "badge-explore",
+            keyword: "tas ransel wanita korea nilon waterproof kuliah laptop",
+            criteria: "Target anak sekolah & mahasiswi (contoh: Chiyum). Banyak kantong multifungsi, bahan tahan air."
+          },
+          {
+            title: "Coffee Tumbler Mug Handle Stainless",
+            status: "Explore",
+            badgeClass: "badge-explore",
+            keyword: "gelas kopi tumbler stainless handle sedotan portable",
+            criteria: "Model coffee cup estetik cocok untuk meja kantor / mobil. Uji komisi di atas 8%."
+          },
+          {
+            title: "Serum Pencerah Bekas Jerawat & Flek",
+            status: "Explore",
+            badgeClass: "badge-explore",
+            keyword: "serum niacinamide alpha arbutin pencerah bekas jerawat",
+            criteria: "Review jujur ingredients BPOM. Cek listing resmi toko mall / verified."
+          },
+          {
+            title: "8-in-1 Travel Bag Organizer Set Koper",
+            status: "Explore",
+            badgeClass: "badge-explore",
+            keyword: "8 in 1 travel organizer bag set koper pouch pakaian",
+            criteria: "Kategori lifestyle musiman/travel. GMV Rp100.000+, komisi Iklan Toko 8-10%."
+          }
+        ]
+      },
+      0: { // MINGGU
+        name: "Minggu — Evaluasi Mingguan & Filter Data",
+        focus: "Audit Komisi Bersih, Status Batal, & Sortir Video Juara",
+        target: "0 Produk Baru • Audit Mode",
+        items: [
+          {
+            title: "Audit Status: Sudah Dibayar vs Dibatalkan",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "laporan pesanan affiliate tiktok shop",
+            criteria: "Sortir produk yang sering 'Tidak Memenuhi Syarat' berturut-turut untuk dipause dari promosi."
+          },
+          {
+            title: "Analisis Selisih Komisi: Iklan Toko vs Standar",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "komisi iklan toko tiktok",
+            criteria: "Pastikan video dipasang keranjang pada toko bertanda komisi Iklan Toko (10-13%) bukan komisi standar (2%)."
+          },
+          {
+            title: "Evaluasi Konversi Bra & Innerwear",
+            status: "Potensial",
+            badgeClass: "badge-potensial",
+            keyword: "supplier bra seamless komisi tinggi",
+            criteria: "Cari supplier pengganti MyBra yang memberi komisi lebih layak namun kualitas barang tetap lembut."
+          },
+          {
+            title: "Sortir 3 Top Video dengan GMV Tertinggi",
+            status: "Winning",
+            badgeClass: "badge-winning",
+            keyword: "analisis video affiliate tiktok analytics",
+            criteria: "Tonton ulang hook 3 detik pertama pada video celana Joso & Raveena. Duplikasi teknik opening-nya."
+          },
+          {
+            title: "Pembersihan Keranjang Kuning yang Stok Habis",
+            status: "Explore",
+            badgeClass: "badge-explore",
+            keyword: "cek stok varian listing toko affiliate",
+            criteria: "Ganti link produk yang varian warna hitam/ukuran favoritnya habis agar pembeli tidak drop."
+          }
+        ]
+      }
+    };
+
+    // 5 FORMULA VIDEO SCRIPTS
+    const VIDEO_CONCEPTS = [
+      {
+        tag: "Konsep 1: Visual Shock / Problem Hook",
+        title: "Keresahan Sehari-hari yang Terpecahkan",
+        desc: "3 detik awal sorot masalah paling menyebalkan (misal: 'Pernah gak sih beli celana tapi paha keliatan lebar?' atau 'Air es baru 2 jam udah hangat?'). Lalu tunjukkan produk ini sebagai solusinya."
+      },
+      {
+        tag: "Konsep 2: Try-On 360° / Product Showcase",
+        title: "Tampilan Asli Tanpa Filter (Real Lighting)",
+        desc: "Perlihatkan produk dari berbagai sudut di bawah cahaya matahari. Gerakkan kain, raba tekstur bahan, perlihatkan kerapian resleting dan jahitan agar calon pembeli percaya kualitasnya."
+      },
+      {
+        tag: "Konsep 3: Uji Fitur & Bukti Listing",
+        title: "Tes Pembuktian Janji Toko",
+        desc: "Buktikan satu per satu spesifikasi produk secara ekstrem (misal: celana ditarik untuk tes stretch karet, botol dibalik anti bocor, es batu didiamkan semalaman)."
+      },
+      {
+        tag: "Konsep 4: A Day in My Life / Mix & Match",
+        title: "Outfit Inspiration & Gaya Hidup",
+        desc: "Tunjukkan bagaimana produk dipakai saat aktivitas nyata: dipakai kerja kantor formal, nongkrong di cafe, atau tumbler yang pas masuk di cup holder mobil/ransel."
+      },
+      {
+        tag: "Konsep 5: FOMO & Urgensi Keranjang Kuning",
+        title: "Spill Promo Bundel & Kupon Toko",
+        desc: "'Jangan checkout 1 pcs rugi, ambil paket bundel 2 pcs diskonnya lumayan banget!'. Arahkan tangan menunjuk ke arah keranjang kuning sebelum promo berakhir."
+      }
+    ];
+
+    // --- STATE MANAGEMENT ---
+    let currentDate = new Date();
+    let selectedDate = new Date();
+
+    // DOM ELEMENTS
+    const monthSelect = document.getElementById('monthSelect');
+    const yearSelect = document.getElementById('yearSelect');
+    const calendarDays = document.getElementById('calendarDays');
+    const prevMonthBtn = document.getElementById('prevMonth');
+    const nextMonthBtn = document.getElementById('nextMonth');
+
+    const activeDateStr = document.getElementById('activeDateStr');
+    const activeDayFocus = document.getElementById('activeDayFocus');
+    const targetBadge = document.getElementById('targetBadge');
+    const productList = document.getElementById('productList');
+
+    const videoModal = document.getElementById('videoModal');
+    const modalProductTitle = document.getElementById('modalProductTitle');
+    const conceptList = document.getElementById('conceptList');
+    const closeModal = document.getElementById('closeModal');
+    const toast = document.getElementById('toast');
+
+    const MONTH_NAMES = [
+      "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+      "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+
+    const DAY_NAMES = [
+      "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"
+    ];
+
+    // INIT CALENDAR SELECTORS (MULTI-YEAR SYSTEM)
+    function initSelectors() {
+      // Months
+      monthSelect.innerHTML = "";
+      MONTH_NAMES.forEach((name, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.textContent = name;
+        monthSelect.appendChild(opt);
+      });
+
+      // Years (Multi-Year: Current Year - 2 to + 5 years)
+      yearSelect.innerHTML = "";
+      const baseYear = new Date().getFullYear();
+      for (let y = baseYear - 2; y <= baseYear + 6; y++) {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y;
+        yearSelect.appendChild(opt);
+      }
+
+      monthSelect.value = currentDate.getMonth();
+      yearSelect.value = currentDate.getFullYear();
+    }
+
+    // RENDER CALENDAR GRID
+    function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+
+      monthSelect.value = month;
+      yearSelect.value = year;
+
+      calendarDays.innerHTML = "";
+
+      const firstDayIndex = new Date(year, month, 1).getDay(); // 0 is Sunday
+      const totalDays = new Date(year, month + 1, 0).getDate();
+
+      // Empty padding cells
+      for (let i = 0; i < firstDayIndex; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'day-cell empty';
+        calendarDays.appendChild(emptyCell);
+      }
+
+      const today = new Date();
+
+      // Day numbers
+      for (let d = 1; d <= totalDays; d++) {
+        const cell = document.createElement('div');
+        cell.className = 'day-cell';
+        cell.textContent = d;
+
+        const thisDate = new Date(year, month, d);
+
+        // Today highlight
+        if (
+          thisDate.getDate() === today.getDate() &&
+          thisDate.getMonth() === today.getMonth() &&
+          thisDate.getFullYear() === today.getFullYear()
+        ) {
+          cell.classList.add('today');
+        }
+
+        // Selected highlight
+        if (
+          thisDate.getDate() === selectedDate.getDate() &&
+          thisDate.getMonth() === selectedDate.getMonth() &&
+          thisDate.getFullYear() === selectedDate.getFullYear()
+        ) {
+          cell.classList.add('selected');
+        }
+
+        // Dot indicator
+        const dot = document.createElement('div');
+        dot.className = 'day-dot';
+        cell.appendChild(dot);
+
+        // Click Handler
+        cell.addEventListener('click', () => {
+          selectedDate = new Date(year, month, d);
+          renderCalendar();
+          renderDayView();
+        });
+
+        calendarDays.appendChild(cell);
+      }
+    }
+
+    // RENDER PRODUCTS ACCORDING TO SELECTED DAY
+    function renderDayView() {
+      const dayOfWeek = selectedDate.getDay(); // 0-6
+      const schedule = SCHEDULE_DATA[dayOfWeek];
+
+      const dayName = DAY_NAMES[dayOfWeek];
+      const dateNum = selectedDate.getDate();
+      const monthName = MONTH_NAMES[selectedDate.getMonth()];
+      const yearNum = selectedDate.getFullYear();
+
+      activeDateStr.textContent = `${dayName}, ${dateNum} ${monthName} ${yearNum}`;
+      activeDayFocus.textContent = schedule.name;
+      targetBadge.innerHTML = schedule.target.replace(' • ', '<br><span style="font-size: 10px; font-weight: normal;">') + '</span>';
+
+      productList.innerHTML = "";
+
+      schedule.items.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+
+        card.innerHTML = `
+          <div class="card-top">
+            <div class="prod-index">${index + 1}</div>
+            <div class="prod-name">${item.title}</div>
+            <span class="badge-status ${item.badgeClass}">${item.status}</span>
+          </div>
+
+          <div class="keyword-box">
+            <span class="keyword-text">${item.keyword}</span>
+            <button class="btn-copy" data-kw="${item.keyword}">
+              📋 Salin
+            </button>
+          </div>
+
+          <div class="criteria-box">
+            <strong>Hal yang perlu diperiksa:</strong> ${item.criteria}
+          </div>
+
+          <button class="btn-ideas" data-title="${item.title}">
+            🎬 Buat 5 Konsep Video Untuk Produk Ini
+          </button>
+        `;
+
+        productList.appendChild(card);
+      });
+
+      // Bind Copy Buttons
+      document.querySelectorAll('.btn-copy').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const kw = e.currentTarget.getAttribute('data-kw');
+          navigator.clipboard.writeText(kw).then(() => {
+            showToast(`Kata kunci disalin: "${kw}"`);
+          });
+        });
+      });
+
+      // Bind Video Ideas Buttons
+      document.querySelectorAll('.btn-ideas').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const title = e.currentTarget.getAttribute('data-title');
+          openVideoIdeasModal(title);
+        });
+      });
+    }
+
+    // OPEN 5 VIDEO FORMULA MODAL
+    function openVideoIdeasModal(productTitle) {
+      modalProductTitle.textContent = productTitle;
+      conceptList.innerHTML = "";
+
+      VIDEO_CONCEPTS.forEach(concept => {
+        const div = document.createElement('div');
+        div.className = 'concept-item';
+        div.innerHTML = `
+          <div class="concept-tag">${concept.tag}</div>
+          <div class="concept-title">${concept.title}</div>
+          <div class="concept-desc">${concept.desc}</div>
+        `;
+        conceptList.appendChild(div);
+      });
+
+      videoModal.classList.add('active');
+    }
+
+    function closeModalHandler() {
+      videoModal.classList.remove('active');
+    }
+
+    // TOAST HELPER
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
+    }
+
+    // EVENT LISTENERS
+    monthSelect.addEventListener('change', (e) => {
+      currentDate.setMonth(parseInt(e.target.value));
+      renderCalendar();
+    });
+
+    yearSelect.addEventListener('change', (e) => {
+      currentDate.setFullYear(parseInt(e.target.value));
+      renderCalendar();
+    });
+
+    prevMonthBtn.addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar();
+    });
+
+    nextMonthBtn.addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar();
+    });
+
+    closeModal.addEventListener('click', closeModalHandler);
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) closeModalHandler();
+    });
+
+    // STARTUP
+    initSelectors();
+    renderCalendar();
+    renderDayView();
+  </script>
+</body>
+</html>
