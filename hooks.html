@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bank Hook — Affiliate Daily Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF6F0;--card:#FFF;--sub:#FDFBF8;--bd:#EFE7DC;--tx:#332B25;--mu:#7E7367;--pr:#E07A5F;--prl:#FDEEE9;--tc:#D96B43;--hl:#FDF6E2;--hf:#9C6615;--sg:#759F87;--sgl:#EBF3EE;--wb:#FFE8D6;--wf:#BC4749;--hd:linear-gradient(135deg,#FDEEE9,#FAF0E6);--sh:0 2px 8px rgba(92,64,45,.05);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1B1612;--card:#271F1A;--sub:#2E2520;--bd:#3D332B;--tx:#F3EAE0;--mu:#B3A597;--prl:#3A2A24;--hl:#3A3220;--hf:#E9B44C;--sgl:#22302A;--wb:#47291F;--wf:#FF9B8E;--hd:linear-gradient(135deg,#3A2A24,#2A221C)}}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif;-webkit-tap-highlight-color:transparent}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);min-height:100%;display:flex;justify-content:center;padding-bottom:50px}
+.app{width:100%;max-width:480px;padding:16px}
+@media(min-width:900px){.app{max-width:960px;padding:32px 20px}.grid{display:grid;grid-template-columns:360px 1fr;gap:24px;align-items:start}}
+.header{background:var(--hd);border:1px solid var(--bd);border-radius:24px;padding:20px;margin-bottom:18px;position:relative;box-shadow:var(--sh)}
+.header:after{content:"☕✨";position:absolute;right:16px;top:14px;font-size:26px}
+.badge{display:inline-block;background:var(--card);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;color:var(--pr);margin-bottom:8px;border:1px solid var(--bd)}
+.title{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;line-height:1.25}
+.subt{font-size:13px;color:var(--mu);margin-top:4px;max-width:85%}
+.acc{display:flex;gap:8px;margin-top:14px}
+.acc button{flex:1;padding:9px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-weight:700;font-size:13px;cursor:pointer}
+.acc button.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.cal{background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:18px;box-shadow:var(--sh);margin-bottom:20px}
+.ctl{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.sel{background:var(--sub);border:1px solid var(--bd);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600;color:var(--tx)}
+.nav{width:34px;height:34px;background:var(--sub);border:1px solid var(--bd);border-radius:50%;cursor:pointer;color:var(--tx);font-weight:700}
+.wd,.days{display:grid;grid-template-columns:repeat(7,1fr);text-align:center}
+.wd{font-size:11px;font-weight:700;color:var(--mu);margin-bottom:8px;text-transform:uppercase}
+.days{gap:5px}
+.d{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;font-weight:600;border-radius:10px;cursor:pointer;border:1px solid transparent}
+.d:hover:not(.e){background:var(--prl)}
+.d.s{background:var(--pr)!important;color:#fff!important}
+.d.t:not(.s){border:1.5px solid var(--pr);color:var(--pr)}
+.d.e{cursor:default;opacity:.2}
+.dot{width:4px;height:4px;border-radius:50%;margin-top:2px;background:var(--pr)}
+.d.s .dot{background:#fff}
+.banner{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:var(--sh);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.banner h2{font-size:17px}.banner p{font-size:12px;color:var(--mu);margin-top:2px}
+.pill{background:var(--sgl);color:var(--sg);border:1px solid var(--bd);padding:6px 12px;border-radius:30px;font-size:11px;font-weight:700;text-align:right;white-space:nowrap}
+.sec{font-size:14px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.8px;margin:18px 0 10px 4px}
+.list{display:flex;flex-direction:column;gap:12px}
+.pc{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;box-shadow:var(--sh)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
+.ix{width:22px;height:22px;border-radius:50%;background:var(--prl);color:var(--pr);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pn{font-size:15px;font-weight:700;line-height:1.3;flex-grow:1}
+.bs{font-size:10px;font-weight:700;padding:3px 8px;border-radius:12px;white-space:nowrap}
+.badge-winning{background:var(--wb);color:var(--wf)}.badge-potensial{background:var(--hl);color:var(--hf)}.badge-explore{background:var(--sgl);color:var(--sg)}
+.kw{background:var(--sub);border:1px dashed var(--bd);border-radius:10px;padding:9px 12px;margin:10px 0;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.kw span{font-family:monospace;font-size:12px;color:var(--tc);font-weight:600;word-break:break-word}
+.cp{background:var(--card);border:1px solid var(--bd);color:var(--tx);font-size:11px;font-weight:600;padding:4px 8px;border-radius:6px;cursor:pointer}
+.cr{font-size:12px;color:var(--mu);line-height:1.4;background:var(--sub);padding:8px 10px;border-radius:8px;margin-bottom:10px}
+.cr b{color:var(--tx)}
+.bi{width:100%;background:var(--prl);color:var(--pr);border:1px solid var(--bd);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;z-index:99;opacity:0;pointer-events:none;transition:opacity .2s}
+.ov.on{opacity:1;pointer-events:auto}
+.sheet{background:var(--card);width:100%;max-width:520px;border-radius:24px 24px 0 0;padding:24px 20px calc(32px + env(safe-area-inset-bottom,0px));max-height:85vh;overflow-y:auto}
+.mt{font-size:17px;font-weight:800;margin-bottom:4px}.ms{font-size:12px;color:var(--mu);margin-bottom:16px}
+.ci{background:var(--sub);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:10px}
+.ct{font-size:10px;font-weight:800;color:var(--pr);text-transform:uppercase;margin-bottom:4px}
+.ch{font-size:13px;font-weight:700;margin-bottom:4px}.cd{font-size:12px;color:var(--mu);line-height:1.4}
+.cl{width:100%;background:var(--tx);color:var(--bg);border:none;padding:12px;border-radius:16px;font-weight:700;font-size:13px;cursor:pointer;margin-top:12px}
+.toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%) translateY(120px);background:var(--tx);color:var(--bg);padding:8px 18px;border-radius:30px;font-size:12px;font-weight:600;z-index:100;transition:transform .3s}
+.toast.show{transform:translateX(-50%) translateY(0)}
+[hidden]{display:none!important}
+.tabs{display:flex;gap:8px;margin-top:10px}
+.tabs button{flex:1;padding:9px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-weight:700;font-size:13px;cursor:pointer}
+.tabs button.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.hbar{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.cp.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.hx{white-space:pre-wrap;font-size:14px;line-height:1.55;word-break:break-word}
+.hbtn{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.lnk{display:block;text-align:center;margin-top:10px;padding:11px;border-radius:12px;background:var(--tx);color:var(--bg);font-weight:700;font-size:13px;text-decoration:none}
+.app{max-width:720px!important}
+.hbar{flex-wrap:wrap}.hbar input{flex:1 1 100%;padding:12px}.hbar .cp{flex:1;padding:11px;font-size:13px}
+.bn{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="header">
+<div class="badge">🪝 BANK HOOK</div>
+<h1 class="title">Kata-kata Hook</h1>
+<p class="subt">Simpan, cari, dan pakai ulang hook video. Tersambung ke Google Sheet.</p>
+<a class="lnk" href="index.html">← Kembali ke Planner</a>
+</header>
+<section id="hv">
+<div class="banner"><div><h2>🪝 Bank Hook</h2><p id="hs"></p></div><button class="cp" id="hset">⚙ Sambungan</button></div>
+<div class="hbar"><input id="hq" class="sel" placeholder="Cari hook…" style="flex:1;min-width:0"><button class="cp" id="hrand">🎲 Acak</button><button class="cp on" id="hadd">＋ Tambah</button></div>
+<div id="hc" class="chips"></div>
+<div id="hl" class="list"></div>
+</section>
+<div id="hm" class="ov"><div class="sheet"><h3 class="mt" id="hmt"></h3><p class="ms" id="hmh"></p>
+<input id="hk" class="sel" list="hkl" placeholder="Kategori (mis. Problem, Curiosity, FOMO)" style="width:100%;margin-bottom:10px"><datalist id="hkl"></datalist>
+<textarea id="ht" class="sel" style="width:100%;min-height:240px;resize:vertical;line-height:1.5" placeholder="Tempel teks hook di sini…"></textarea>
+<p class="ms" id="hcnt" style="margin:8px 0 0"></p>
+<button class="cl" id="hsave">Simpan</button><button class="cp" id="hcx" style="width:100%;margin-top:8px;padding:10px">Batal</button></div></div>
+</div>
+<div id="ts" class="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+function toast(m){const t=$('ts');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+// ===== BANK HOOK =====
+const HOOK_API_URL='https://script.google.com/macros/s/AKfycbyb7UwuScGBQqDRRZH5kKnBqUcsGYL4SEOalYiRtYL3Ar8fES6yWGfSP5WDBqgfQNkA/exec'; // isi URL Web App Apps Script di sini, atau lewat tombol ⚙ Sambungan
+let hooks=[],hCat='Semua',hQ='',editId=null,hLoaded=false;
+const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){}return null};
+const apiUrl=()=>ls('hookApi')||HOOK_API_URL;
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function hookCall(action,body){
+ const u=apiUrl();
+ if(u){
+  let r;
+  if(action==='list')r=await fetch(u+(u.includes('?')?'&':'?')+'action=hooks');
+  else r=await fetch(u,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({...body,action:'hook_'+action})});
+  const j=await r.json();if(j.status!=='success')throw new Error(j.msg||'gagal');return j.hooks;
+ }
+ let L=[];try{L=JSON.parse(ls('hooksLocal')||'[]')}catch(e){}
+ const now=new Date().toISOString().slice(0,16).replace('T',' ');
+ if(action==='add')body.items.forEach(i=>L.push({id:Math.random().toString(36).slice(2,10),kategori:i.kategori,teks:i.teks,dibuat:now,diubah:now}));
+ if(action==='update')L=L.map(h=>h.id===body.id?{...h,kategori:body.kategori,teks:body.teks,diubah:now}:h);
+ if(action==='delete')L=L.filter(h=>!body.ids.includes(h.id));
+ ls('hooksLocal',JSON.stringify(L));return L;
+}
+// pemisah antar hook: baris kosong, atau baris berisi --- 
+const splitHooks=t=>t.replace(/\r/g,'').split(/\n[ \t]*\n+|\n[ \t]*-{3,}[ \t]*\n/).map(x=>x.trim()).filter(Boolean);
+function hRender(){
+ const cats=['Semua',...new Set(hooks.map(h=>h.kategori))];
+ if(!cats.includes(hCat))hCat='Semua';
+ $('hc').innerHTML=cats.map(c=>`<button class="cp${c===hCat?' on':''}" data-c="${esc(c)}">${esc(c)}${c==='Semua'?' ('+hooks.length+')':''}</button>`).join('');
+ $('hc').querySelectorAll('button').forEach(b=>b.onclick=()=>{hCat=b.dataset.c;hRender()});
+ $('hkl').innerHTML=cats.slice(1).map(c=>`<option value="${esc(c)}">`).join('');
+ const q=hQ.toLowerCase(),L=hooks.filter(h=>(hCat==='Semua'||h.kategori===hCat)&&(!q||h.teks.toLowerCase().includes(q)));
+ $('hs').textContent=(apiUrl()?'Tersambung ke Google Sheet (tab Hooks)':'Mode lokal — belum tersambung ke Spreadsheet, tekan ⚙')+` · ${L.length} hook`;
+ $('hl').innerHTML=L.length?'':'<div class="cr">Belum ada hook. Tekan ＋ Tambah, lalu tempel teks panjang berisi banyak hook.</div>';
+ L.slice().reverse().forEach(h=>{const c=document.createElement('div');c.className='pc';
+  c.innerHTML=`<div class="top"><span class="bs badge-potensial">${esc(h.kategori)}</span><span style="font-size:11px;color:var(--mu)">${esc(h.diubah)}</span></div><div class="hx">${esc(h.teks)}</div><div class="hbtn"><button class="cp" data-a="c">📋 Salin</button><button class="cp" data-a="e">✏️ Edit</button><button class="cp" data-a="d">🗑 Hapus</button></div>`;
+  c.querySelector('[data-a=c]').onclick=()=>copyH(h.teks);
+  c.querySelector('[data-a=e]').onclick=()=>openH(h);
+  c.querySelector('[data-a=d]').onclick=async()=>{if(!confirm('Hapus hook ini?'))return;try{hooks=await hookCall('delete',{ids:[h.id]});hRender();toast('Terhapus')}catch(e){toast('Gagal: '+e.message)}};
+  $('hl').appendChild(c)});
+}
+function copyH(t){try{navigator.clipboard.writeText(t).then(()=>toast('Hook disalin'))}catch(e){toast('Gagal menyalin')}}
+async function hLoad(){try{hooks=await hookCall('list');hLoaded=true}catch(e){toast('Gagal memuat: '+e.message)}hRender()}
+function openH(h){editId=h?h.id:null;
+ $('hmt').textContent=h?'Edit Hook':'Tambah Hook';
+ $('hmh').textContent=h?'Mengubah satu hook.':'Boleh tempel teks panjang berisi banyak hook. Pisahkan tiap hook dengan satu baris kosong (atau baris ---). Satu hook boleh beberapa baris.';
+ $('hk').value=h?h.kategori:(hCat==='Semua'?'':hCat);$('ht').value=h?h.teks:'';cnt();$('hm').classList.add('on')}
+function cnt(){$('hcnt').textContent=editId?'':`${splitHooks($('ht').value).length} hook terdeteksi`}
+$('ht').oninput=cnt;
+$('hadd').onclick=()=>openH(null);
+$('hcx').onclick=()=>$('hm').classList.remove('on');
+$('hm').onclick=e=>{if(e.target==$('hm'))$('hm').classList.remove('on')};
+$('hq').oninput=e=>{hQ=e.target.value;hRender()};
+$('hrand').onclick=()=>{const L=hooks.filter(h=>hCat==='Semua'||h.kategori===hCat);if(!L.length)return toast('Belum ada hook');copyH(L[Math.floor(Math.random()*L.length)].teks)};
+$('hset').onclick=()=>{const v=prompt('Tempel URL Web App Apps Script (kosongkan untuk mode lokal):',apiUrl()||'');if(v===null)return;ls('hookApi',v.trim());hLoad()};
+$('hsave').onclick=async()=>{const kat=$('hk').value.trim()||'Umum',raw=$('ht').value,b=$('hsave');
+ if(!raw.trim())return toast('Teks masih kosong');
+ b.disabled=true;b.textContent='Menyimpan…';
+ try{
+  if(editId)hooks=await hookCall('update',{id:editId,kategori:kat,teks:raw.trim()});
+  else hooks=await hookCall('add',{items:splitHooks(raw).map(t=>({kategori:kat,teks:t}))});
+  $('hm').classList.remove('on');hRender();toast('Tersimpan');
+ }catch(e){toast('Gagal: '+e.message)}
+ b.disabled=false;b.textContent='Simpan'};
+
+hLoad();
+</script>
+</body>
+</html>
